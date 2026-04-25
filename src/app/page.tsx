@@ -1,10 +1,4 @@
-const skills = ["Next.js", "TypeScript", "Tailwind CSS", "Git", "GitHub"];
-
-const goals = [
-  "Cung co quy trinh Git workflow voi commit message dung chuan Conventional Commits.",
-  "Lam chu Next.js App Router de xay dung giao dien nhanh va de mo rong.",
-  "Ung dung cong cu AI nhu GitHub Copilot va Gemini CLI vao quy trinh phat trien.",
-];
+import { goals, profile, skills } from "@/data/profile";
 
 export default function Home() {
   return (
@@ -17,21 +11,18 @@ export default function Home() {
               CTK46 - Lab 01
             </p>
             <h1 className="mt-5 max-w-2xl text-4xl font-semibold tracking-tight text-slate-950 sm:text-6xl">
-              PhanVanTIen
+              {profile.name}
             </h1>
             <div className="mt-6 grid gap-3 text-sm text-slate-700 sm:grid-cols-2 sm:text-base">
               <p className="rounded-2xl bg-slate-900 px-4 py-3 font-medium text-white">
-                MSSV: 2212472
+                MSSV: {profile.studentId}
               </p>
               <p className="rounded-2xl border border-slate-200 px-4 py-3 font-medium">
-                Lop: CTK46PM
+                Lop: {profile.className}
               </p>
             </div>
             <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-700">
-              Toi la sinh vien CNTT dang tim hieu cac cong nghe moi trong phat
-              trien phan mem. Muc tieu cua bai thuc hanh nay la xay dung nen
-              tang lam viec voi Git, GitHub va Next.js, dong thoi dua AI vao
-              quy trinh hoc tap mot cach thuc te.
+              {profile.summary}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               {skills.map((skill) => (
@@ -50,17 +41,16 @@ export default function Home() {
               Gioi thieu ngan
             </p>
             <h2 className="mt-4 text-3xl font-semibold tracking-tight">
-              Huong den quy trinh phat trien hien dai
+              {profile.tagline}
             </h2>
             <p className="mt-6 text-base leading-7 text-slate-300">
-              Toi quan tam den phat trien web hien dai, tu dong hoa quy trinh va
-              cach ket hop cong cu AI de tang toc do hoc va lam project.
+              {profile.intro}
             </p>
             <div className="mt-8 rounded-3xl border border-white/10 bg-white/5 p-5">
               <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-400">
                 GitHub
               </p>
-              <p className="mt-3 text-2xl font-semibold">teddy3704</p>
+              <p className="mt-3 text-2xl font-semibold">{profile.github}</p>
               <p className="mt-2 text-sm text-slate-400">
                 San sang tiep tuc day source code len repository sau khi hoan
                 tat cac buoc xac thuc can thiet.
@@ -94,8 +84,7 @@ export default function Home() {
                   So thich
                 </p>
                 <p className="mt-3 text-base leading-7 text-slate-700">
-                  Xay dung giao dien web, tim hieu cong nghe moi va toi uu quy
-                  trinh hoc lap trinh.
+                  {profile.hobbies}
                 </p>
               </div>
               <div className="rounded-3xl bg-sky-50 p-5">
@@ -103,8 +92,7 @@ export default function Home() {
                   Dinh huong
                 </p>
                 <p className="mt-3 text-base leading-7 text-slate-700">
-                  Phat trien ky nang full-stack va van dung AI dung cach trong
-                  qua trinh lam bai va lam du an thuc te.
+                  {profile.direction}
                 </p>
               </div>
             </div>

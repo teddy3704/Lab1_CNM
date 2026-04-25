@@ -1,3 +1,4 @@
+import { HighlightCard } from "@/components/highlight-card";
 import { goals, profile, skills } from "@/data/profile";
 
 export default function Home() {
@@ -79,22 +80,16 @@ export default function Home() {
               So thich va dinh huong
             </p>
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
-              <div className="rounded-3xl bg-orange-50 p-5">
-                <p className="text-sm font-semibold uppercase tracking-[0.15em] text-orange-700">
-                  So thich
-                </p>
-                <p className="mt-3 text-base leading-7 text-slate-700">
-                  {profile.hobbies}
-                </p>
-              </div>
-              <div className="rounded-3xl bg-sky-50 p-5">
-                <p className="text-sm font-semibold uppercase tracking-[0.15em] text-sky-700">
-                  Dinh huong
-                </p>
-                <p className="mt-3 text-base leading-7 text-slate-700">
-                  {profile.direction}
-                </p>
-              </div>
+              <HighlightCard
+                title="So thich"
+                description={profile.hobbies}
+                tone="orange"
+              />
+              <HighlightCard
+                title="Dinh huong"
+                description={profile.direction}
+                tone="sky"
+              />
             </div>
           </article>
         </section>

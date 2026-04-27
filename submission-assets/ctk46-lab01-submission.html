@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CTK46 Lab 01 Submission</title>
+    <style>
+      :root {
+        --ink: #16201e;
+        --muted: #5a6664;
+        --line: #ccd4d2;
+        --soft: #eef2f1;
+        --accent: #8d4d28;
+        --accent-dark: #5c3119;
+        --paper: #ffffff;
+      }
+
+      @page {
+        size: A4;
+        margin: 16mm;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Times New Roman", Times, serif;
+        color: var(--ink);
+        background: #e7edeb;
+      }
+
+      main {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 24px 0 56px;
+      }
+
+      .page {
+        position: relative;
+        width: 100%;
+        min-height: 1122px;
+        margin: 0 auto 24px;
+        padding: 32px 36px;
+        background: var(--paper);
+        box-shadow: 0 18px 48px rgba(17, 24, 39, 0.12);
+      }
+
+      .page:last-child {
+        margin-bottom: 0;
+      }
+
+      .page-break {
+        break-after: page;
+      }
+
+      .cover {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border: 2px solid var(--ink);
+        padding: 42px;
+      }
+
+      .cover-top {
+        text-align: center;
+      }
+
+      .cover-top p {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.8;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .cover-title {
+        margin-top: 86px;
+        text-align: center;
+      }
+
+      .cover-title h1 {
+        margin: 0;
+        font-size: 32px;
+        line-height: 1.4;
+        text-transform: uppercase;
+      }
+
+      .cover-title h2 {
+        margin: 18px 0 0;
+        font-size: 22px;
+        line-height: 1.5;
+        text-transform: uppercase;
+        color: var(--accent-dark);
+      }
+
+      .cover-subtitle {
+        margin: 28px auto 0;
+        max-width: 620px;
+        text-align: center;
+        font-size: 18px;
+        line-height: 1.8;
+      }
+
+      .cover-meta {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 36px;
+        font-size: 18px;
+      }
+
+      .cover-meta td {
+        border: 1px solid var(--line);
+        padding: 12px 14px;
+      }
+
+      .cover-meta td:first-child {
+        width: 34%;
+        font-weight: 700;
+        background: var(--soft);
+      }
+
+      .cover-footer {
+        text-align: center;
+        font-size: 16px;
+        line-height: 1.9;
+      }
+
+      .report-header {
+        border-bottom: 2px solid var(--ink);
+        padding-bottom: 14px;
+      }
+
+      .report-header h2 {
+        margin: 0;
+        font-size: 26px;
+        text-transform: uppercase;
+      }
+
+      .report-header p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-size: 15px;
+      }
+
+      .section {
+        margin-top: 24px;
+      }
+
+      .section-title {
+        margin: 0 0 12px;
+        padding-left: 12px;
+        border-left: 5px solid var(--accent);
+        font-size: 22px;
+        text-transform: uppercase;
+      }
+
+      .section p {
+        margin: 0;
+        font-size: 17px;
+        line-height: 1.8;
+        text-align: justify;
+      }
+
+      .section p + p {
+        margin-top: 10px;
+      }
+
+      .two-col {
+        display: grid;
+        grid-template-columns: 1.08fr 0.92fr;
+        gap: 20px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .info-table,
+      .requirement-table,
+      .commit-table {
+        font-size: 15px;
+      }
+
+      .info-table td,
+      .requirement-table th,
+      .requirement-table td,
+      .commit-table th,
+      .commit-table td {
+        border: 1px solid var(--line);
+        padding: 10px 12px;
+        vertical-align: top;
+      }
+
+      .info-table td:first-child,
+      .requirement-table th,
+      .commit-table th {
+        background: var(--soft);
+        font-weight: 700;
+      }
+
+      .info-table td:first-child {
+        width: 34%;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: rgba(141, 77, 40, 0.12);
+        color: var(--accent-dark);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .repo-box {
+        border: 1px solid var(--line);
+        background: #fbf9f6;
+        padding: 14px 16px;
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      .repo-box a {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 700;
+      }
+
+      ul,
+      ol {
+        margin: 0;
+        padding-left: 22px;
+        font-size: 16px;
+        line-height: 1.8;
+      }
+
+      li + li {
+        margin-top: 6px;
+      }
+
+      .caption {
+        margin-top: 8px;
+        font-size: 14px;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      .figure-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      figure {
+        margin: 0;
+      }
+
+      .full-width {
+        grid-column: 1 / -1;
+      }
+
+      img {
+        display: block;
+        width: 100%;
+        border: 1px solid var(--line);
+      }
+
+      .page-number {
+        position: absolute;
+        right: 36px;
+        bottom: 18px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .signature-box {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+        margin-top: 36px;
+      }
+
+      .signature {
+        border-top: 1px solid var(--line);
+        padding-top: 10px;
+        text-align: center;
+        font-size: 15px;
+      }
+
+      @media print {
+        body {
+          background: #ffffff;
+        }
+
+        main {
+          max-width: none;
+          padding: 0;
+        }
+
+        .page {
+          margin: 0;
+          box-shadow: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="page cover page-break">
+        <div class="cover-top">
+          <p>BAO CAO BAI THUC HANH</p>
+          <p>MON CONG NGHE MOI TRONG PHAT TRIEN PHAN MEM</p>
+        </div>
+
+        <div>
+          <div class="cover-title">
+            <h1>BAO CAO BAI THUC HANH 01</h1>
+            <h2>XAY DUNG PROJECT NEXT.JS VA HOAN THIEN HO SO NOP BAI</h2>
+          </div>
+
+          <p class="cover-subtitle">
+            Tai lieu tong hop mo ta bai tap, hinh anh giao dien, bang chung fullstack,
+            va link GitHub repository theo dung yeu cau nop bai tren LMS.
+          </p>
+
+          <table class="cover-meta">
+            <tr>
+              <td>Ho va ten sinh vien</td>
+              <td>Phan Van Tien</td>
+            </tr>
+            <tr>
+              <td>MSSV</td>
+              <td>2212472</td>
+            </tr>
+            <tr>
+              <td>Lop</td>
+              <td>CTK46PM</td>
+            </tr>
+            <tr>
+              <td>Repository GitHub</td>
+              <td>https://github.com/teddy3704/Lab1_CNM</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="cover-footer">
+          <div>Ngay xuat tai lieu: 28/04/2026</div>
+          <div>Tap tin nay duoc dung de nop len he thong LMS</div>
+        </div>
+      </section>
+
+      <section class="page page-break">
+        <header class="report-header">
+          <h2>NOI DUNG BAO CAO</h2>
+          <p>Tom tat ve project, cong nghe su dung va muc tieu hoan thanh bai thuc hanh.</p>
+        </header>
+
+        <section class="section">
+          <h3 class="section-title">1. Mo ta bai tap</h3>
+          <p>
+            Project duoc xay dung bang Next.js 16 theo App Router va duoc chinh sua thanh mot landing page
+            ca nhan theo huong editorial critique board. Muc tieu cua bai lam khong chi la hien thong tin
+            sinh vien, ma con chung minh kha nang to chuc bo cuc, xay dung he thong giao dien va trien khai
+            mot luong fullstack nho nhung ro rang de phuc vu viec demo va thuyet trinh.
+          </p>
+          <p>
+            Trang chu hien tai da bao gom hero ca nhan, architecture section, workflow, submission readiness
+            va mot khoi Project Brief dung Server Actions + zod de validate du lieu dau vao va sinh ra
+            creative blueprint typed tra ve giao dien.
+          </p>
+        </section>
+
+        <section class="section two-col">
+          <div>
+            <h3 class="section-title">2. Thong tin project</h3>
+            <table class="info-table">
+              <tr>
+                <td>Ten project</td>
+                <td>CTK46 - Lab 01</td>
+              </tr>
+              <tr>
+                <td>Nen tang</td>
+                <td>Next.js 16, React 19, TypeScript</td>
+              </tr>
+              <tr>
+                <td>UI va validate</td>
+                <td>Tailwind CSS v4, Zod, ESLint</td>
+              </tr>
+              <tr>
+                <td>Trang chinh</td>
+                <td>src/app/page.tsx</td>
+              </tr>
+              <tr>
+                <td>README</td>
+                <td>README.md da mo ta muc tieu, cach chay va cau truc project</td>
+              </tr>
+            </table>
+          </div>
+
+          <div>
+            <h3 class="section-title">3. Pham vi da hoan thanh</h3>
+            <ul>
+              <li>Chinh sua trang chu voi day du thong tin ca nhan cua sinh vien.</li>
+              <li>Thiet ke lai giao dien theo huong editorial co hierarchy ro rang.</li>
+              <li>Bo sung metadata, sitemap, robots va custom not-found page.</li>
+              <li>Tao fullstack brief generator bang Server Actions va zod.</li>
+              <li>Kiem tra du an bang lint va build truoc khi nop.</li>
+            </ul>
+            <p style="margin-top: 14px;">
+              <span class="badge">Repository da duoc push len GitHub</span>
+            </p>
+          </div>
+        </section>
+
+        <section class="section">
+          <h3 class="section-title">4. Link repository</h3>
+          <div class="repo-box">
+            GitHub repository chua project Next.js da hoan thanh:<br />
+            <a href="https://github.com/teddy3704/Lab1_CNM">https://github.com/teddy3704/Lab1_CNM</a>
+          </div>
+        </section>
+
+        <div class="page-number">Trang 1</div>
+      </section>
+
+      <section class="page page-break">
+        <header class="report-header">
+          <h2>DOI CHIEU VOI YEU CAU NOP BAI</h2>
+          <p>Bang tong hop cac dieu kien ma repository va tai lieu nop bai da dap ung.</p>
+        </header>
+
+        <section class="section">
+          <h3 class="section-title">5. Bang doi chieu yeu cau</h3>
+          <table class="requirement-table">
+            <tr>
+              <th style="width: 36px;">#</th>
+              <th>Yeu cau</th>
+              <th style="width: 120px;">Trang thai</th>
+              <th>Bang chung</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Tap tin tai lieu PDF mo ta bai tap, co hinh anh minh hoa</td>
+              <td>Dat</td>
+              <td>Tap tin PDF nay duoc tao tu submission-assets va co kem 3 hinh chup giao dien thuc te.</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Link GitHub repository chua project Next.js da hoan thanh</td>
+              <td>Dat</td>
+              <td>Repository: https://github.com/teddy3704/Lab1_CNM</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Co it nhat 5 commits voi message theo Conventional Commits</td>
+              <td>Dat</td>
+              <td>Repository hien co 6 commits tieu bieu su dung cac prefix feat, refactor, chore, docs.</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Trang chu src/app/page.tsx da duoc chinh sua voi thong tin ca nhan</td>
+              <td>Dat</td>
+              <td>Trang chu hien thi ten, MSSV, lop, mon hoc va lien ket GitHub cua sinh vien.</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>README.md mo ta ngan gon ve project</td>
+              <td>Dat</td>
+              <td>README da mo ta muc tieu, cong nghe, cach chay va cac file chinh cua project.</td>
+            </tr>
+          </table>
+        </section>
+
+        <section class="section two-col">
+          <div>
+            <h3 class="section-title">6. Danh sach commit tieu bieu</h3>
+            <table class="commit-table">
+              <tr>
+                <th style="width: 40px;">STT</th>
+                <th>Commit message</th>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td><code>feat: complete editorial fullstack lab page</code></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td><code>docs: add submission checklist</code></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td><code>feat: add reusable highlight cards</code></td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td><code>refactor: extract profile content data</code></td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td><code>chore: add workspace editor settings</code></td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td><code>feat: initialize lab nextjs project</code></td>
+              </tr>
+            </table>
+          </div>
+
+          <div>
+            <h3 class="section-title">7. Nhan xet ve ket qua</h3>
+            <p>
+              Bai lam da dat yeu cau cua de bai va duoc nang cap them o mat trinh bay va tu duy san pham.
+              Ngoai phan giao dien, project con co mot lat cat fullstack thuc su thong qua brief generator,
+              giup bai nop co suc thuyet phuc cao hon khi demo truoc giang vien.
+            </p>
+            <p>
+              Viec tach du lieu, to chuc component va kiem tra bang lint/build cung giup repository giu duoc
+              tinh ro rang va de bao tri. Day la co so de bai nop dap ung duoc ca mat ky thuat lan trinh bay.
+            </p>
+          </div>
+        </section>
+
+        <div class="signature-box">
+          <div class="signature">Nguoi lap bao cao</div>
+          <div class="signature">Ngay 28 thang 04 nam 2026</div>
+        </div>
+
+        <div class="page-number">Trang 2</div>
+      </section>
+
+      <section class="page">
+        <header class="report-header">
+          <h2>PHU LUC HINH ANH MINH HOA</h2>
+          <p>Anh chup truc tiep tu project dang chay tai localhost de minh hoa giao dien va output fullstack.</p>
+        </header>
+
+        <section class="section">
+          <div class="figure-grid">
+            <figure class="full-width">
+              <img src="homepage-overview.png" alt="Tong quan trang chu" />
+              <figcaption class="caption">
+                Hinh 1. Tong quan giao dien trang chu sau khi duoc thiet ke lai theo huong editorial critique board.
+              </figcaption>
+            </figure>
+
+            <figure>
+              <img src="architecture-workflow.png" alt="Architecture va workflow" />
+              <figcaption class="caption">
+                Hinh 2. Cac section architecture, milestone va workflow duoc trinh bay theo he thong.
+              </figcaption>
+            </figure>
+
+            <figure>
+              <img src="brief-generator-output.png" alt="Brief generator output" />
+              <figcaption class="caption">
+                Hinh 3. Fullstack brief generator da xu ly form tren server va tra output co cau truc.
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <div class="page-number">Trang 3</div>
+      </section>
+    </main>
+  </body>
+</html>
